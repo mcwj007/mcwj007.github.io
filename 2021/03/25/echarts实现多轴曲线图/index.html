@@ -8,20 +8,21 @@
   <link rel="dns-prefetch" href="https://mcwj007.github.io">
   <title>echarts实现多轴曲线图 | WJ的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Echart实现多个x轴或y轴曲线图效果图如下：   1.1 配置option对象12345678910111213141516option:&amp;#123;    &#x2F;&#x2F; 设置 x 轴的样式    xAxis:&amp;#123;&amp;#125;,    &#x2F;&#x2F; 设置 y 轴的样式    yAxis:[],    &#x2F;&#x2F; 设置每条曲线的数据和样式    series:[],    &#x2F;&#x2F; 设置鼠标hover时的提">
+  <meta name="description" content="1. Echart实现多个x轴或y轴曲线图效果图如下：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="echarts实现多轴曲线图">
 <meta property="og:url" content="https://mcwj007.github.io/2021/03/25/echarts%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BD%B4%E6%9B%B2%E7%BA%BF%E5%9B%BE/index.html">
 <meta property="og:site_name" content="WJ的博客">
-<meta property="og:description" content="1. Echart实现多个x轴或y轴曲线图效果图如下：   1.1 配置option对象12345678910111213141516option:&amp;#123;    &#x2F;&#x2F; 设置 x 轴的样式    xAxis:&amp;#123;&amp;#125;,    &#x2F;&#x2F; 设置 y 轴的样式    yAxis:[],    &#x2F;&#x2F; 设置每条曲线的数据和样式    series:[],    &#x2F;&#x2F; 设置鼠标hover时的提">
+<meta property="og:description" content="1. Echart实现多个x轴或y轴曲线图效果图如下：">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mcwj007.github.io/2021/03/25/echarts%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BD%B4%E6%9B%B2%E7%BA%BF%E5%9B%BE/line.png">
 <meta property="og:image" content="https://mcwj007.github.io/2021/03/25/echarts%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BD%B4%E6%9B%B2%E7%BA%BF%E5%9B%BE/tip.png">
 <meta property="article:published_time" content="2021-03-25T12:27:27.000Z">
-<meta property="article:modified_time" content="2021-03-25T12:30:55.800Z">
+<meta property="article:modified_time" content="2021-03-25T12:39:39.729Z">
 <meta property="article:author" content="WANG JING">
 <meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mcwj007.github.io/2021/03/25/echarts%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BD%B4%E6%9B%B2%E7%BA%BF%E5%9B%BE/tip.png">
+<meta name="twitter:image" content="https://mcwj007.github.io/2021/03/25/echarts%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BD%B4%E6%9B%B2%E7%BA%BF%E5%9B%BE/line.png">
   
     <link rel="alternative" href="/atom.xml" title="WJ的博客" type="application/atom+xml">
   
@@ -176,8 +177,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="1-Echart实现多个x轴或y轴曲线图"><a href="#1-Echart实现多个x轴或y轴曲线图" class="headerlink" title="1. Echart实现多个x轴或y轴曲线图"></a>1. Echart实现多个x轴或y轴曲线图</h2><p>效果图如下：</p>
+<img src="/2021/03/25/echarts%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BD%B4%E6%9B%B2%E7%BA%BF%E5%9B%BE/line.png" class title="This is an example image">
 
-
+<span id="more"></span>
 <h3 id="1-1-配置option对象"><a href="#1-1-配置option对象" class="headerlink" title="1.1 配置option对象"></a>1.1 配置option对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">option:&#123;</span><br><span class="line">    <span class="comment">// 设置 x 轴的样式</span></span><br><span class="line">    xAxis:&#123;&#125;,</span><br><span class="line">    <span class="comment">// 设置 y 轴的样式</span></span><br><span class="line">    yAxis:[],</span><br><span class="line">    <span class="comment">// 设置每条曲线的数据和样式</span></span><br><span class="line">    series:[],</span><br><span class="line">    <span class="comment">// 设置鼠标hover时的提示信息</span></span><br><span class="line">    tooltip:&#123;&#125;,</span><br><span class="line">    <span class="comment">// 调整表格两边的空白的区域</span></span><br><span class="line">    grid:&#123;&#125;,</span><br><span class="line">    <span class="comment">// 调整图样的名称</span></span><br><span class="line">    legend:&#123;&#125;</span><br><span class="line">    <span class="comment">// 定义图样和每条曲线的颜色</span></span><br><span class="line">    color:[]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
