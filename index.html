@@ -152,6 +152,270 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-git学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/25/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">git学习笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/25/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2021-03-25T08:43:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Git">维基百科 - Git</a></p>
+</blockquote>
+<h3 id="学习资源介绍"><a href="#学习资源介绍" class="headerlink" title="学习资源介绍"></a>学习资源介绍</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/">Git教程 - 廖雪峰</a></li>
+<li><a target="_blank" rel="noopener" href="http://git.oschina.net/progit/">Pro Git</a></li>
+<li><a target="_blank" rel="noopener" href="http://rogerdudler.github.io/git-guide/index.zh.html">git - 简明指南</a></li>
+<li><a target="_blank" rel="noopener" href="http://backlogtool.com/git-guide/cn/">猴子都能懂的GIT入门</a></li>
+</ul>
+<h3 id="Git-使用交互流程"><a href="#Git-使用交互流程" class="headerlink" title="Git 使用交互流程"></a>Git 使用交互流程</h3><p><img src="C:/Users/PC/Desktop/前端/笔记/git/images/git交互模型.png" alt="git交互模型"></p>
+<h3 id="安装和配置-Git-环境"><a href="#安装和配置-Git-环境" class="headerlink" title="安装和配置 Git 环境"></a>安装和配置 Git 环境</h3><ul>
+<li>下载地址：<a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com/</a></li>
+</ul>
+<h4 id="git-bash-常用命令"><a href="#git-bash-常用命令" class="headerlink" title="git-bash 常用命令"></a>git-bash 常用命令</h4><p>在git-bash中可以执行 <code>linx</code> 命令语句，而在普通的 <code>cmd</code> 命令窗口中则不能。常见命令如下：</p>
+<ul>
+<li><code>pwd</code>    打印当前工作目录路径信息</li>
+<li><code>ls</code>   打印当前目录下所有文件<ul>
+<li><code>ls -a</code>  打印当前目录下所有文件，包括隐藏的文件(例如.git文件夹)</li>
+</ul>
+</li>
+<li><code>cd  目录名</code>   切换到某个目录</li>
+<li><code>mkdir 目录名</code>  在当前工作目录下创建一个新的目录（文件夹）</li>
+<li><code>touch 文件名</code>    创建文件</li>
+<li><code>cat 文件名</code>     查看文件</li>
+<li><code>less  文件名</code>   翻页查看大文本文件<ul>
+<li>有时候使用<code>git log </code>打印日志如果记录过多就会进入 less 查看模式，在该模式下按q键可以退出，上下键可以翻页。</li>
+</ul>
+</li>
+<li><code>vi 文件名</code>  visual interface<ul>
+<li>Esc 退出到命令模式</li>
+<li>i 进入插入模式</li>
+<li>:q 退出vi</li>
+<li>:w 保存编辑</li>
+<li>:wq 保存并退出</li>
+<li>:q! 强制退出不保存修改</li>
+<li>vi 的所有操作基本全部是命令，这里掌握基本使用基于可以了</li>
+<li>有时候使用 git commit 进行提交的时候希望能多写几行提交日志，这时候可以省略 -m 参数进入 vi 编辑模式</li>
+</ul>
+</li>
+<li><code>clear</code>   清除git-bash命令窗口</li>
+<li><code>rmdir</code>   只能删除空目录</li>
+<li><code>rm</code><ul>
+<li><code>rm 文件名</code></li>
+<li><code>rm -rf 目录名</code><ul>
+<li>注：很强大，可以删除非空目录，以及一些比较顽固的文件或者目录</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="初始化配置"><a href="#初始化配置" class="headerlink" title="初始化配置"></a>初始化配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置用户名</span></span><br><span class="line">git config --global user.name <span class="string">&quot;你的名字&quot;</span></span><br><span class="line"><span class="comment"># 配置用户邮箱</span></span><br><span class="line">git config --global user.email <span class="string">&quot;你的常用邮箱&quot;</span></span><br><span class="line"><span class="comment"># 设置 gitk 图形查看工具中文显示默认编码（防止乱码）</span></span><br><span class="line">git config --global gui.encoding utf-8</span><br><span class="line"><span class="comment"># 查看配置列表项</span></span><br><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><ul>
+<li><code>git init</code><ul>
+<li>初始化一个 Git 仓库</li>
+<li><code>git init 文件夹名</code>   自动创建一个文件夹并初始化仓库</li>
+</ul>
+</li>
+<li><code>git status</code><ul>
+<li>查看当前工作区、暂存区、本地仓库的状态</li>
+</ul>
+</li>
+<li><code>git add</code><ul>
+<li>将工作区文件添加到暂存区</li>
+<li>可以通过 <code>git add .</code> 将所有文件都添加</li>
+</ul>
+</li>
+<li><code>git commit</code><ul>
+<li>示例：<code>git commit -m &quot;日志说明&quot; --author=&quot;操作者姓名 &lt;邮箱&gt;&quot;</code></li>
+<li>执行 <code>git commit</code> 的时候，Git 会要求具有用户名和邮箱的参数选项</li>
+<li>可以通过 <code>git config</code> 命令配置一下用户名和邮箱</li>
+</ul>
+</li>
+<li><code>git log</code><ul>
+<li>查看提交日志</li>
+</ul>
+</li>
+<li><code>gitk</code><ul>
+<li>在特定窗口中呈现日志详细信息</li>
+</ul>
+</li>
+</ul>
+<p>总结：操作 Git 的基本工作流程就是先修改文件，然后执行 <code>git add</code> 命令。<br><code>git add</code> 命令会把文件加入到暂存区，接着就可以执行 <code>git commit</code> 命令，将文件存入文档库，<br>从而形成一次历史记录。</p>
+<ul>
+<li>问题1：关于 Git-bash 中文问题</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/msysgit/msysgit/wiki/Git-for-Windows-Unicode-Support">Git for Windows Unicode Support</a></li>
+<li>问题2：执行 commit 的时候一大堆的信息</li>
+<li>问题3：配置 user.name 和 user.email 问题</li>
+</ul>
+<h3 id="工作区、暂存区、本地仓库"><a href="#工作区、暂存区、本地仓库" class="headerlink" title="工作区、暂存区、本地仓库"></a>工作区、暂存区、本地仓库</h3><h3 id="添加-删除文件"><a href="#添加-删除文件" class="headerlink" title="添加/删除文件"></a>添加/删除文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加指定文件到暂存区</span></span><br><span class="line">git add [file1] [file2] ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加指定目录到暂存区，包括子目录</span></span><br><span class="line">git add [dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加当前目录的所有文件到暂存区</span></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除工作区文件，并且将这次删除放入暂存区</span></span><br><span class="line">git rm [file1] [file2] ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止追踪指定文件，但该文件会保留在工作区</span></span><br><span class="line">git rm --cached [file]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 改名文件，并且将这个改名放入暂存区</span></span><br><span class="line">git mv [file-original] [file-renamed]</span><br></pre></td></tr></table></figure>
+
+<h3 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提交暂存区到仓库区</span></span><br><span class="line">git commit -m [message]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交暂存区的指定文件到仓库区</span></span><br><span class="line">git commit [file1] [file2] ... -m [message]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交工作区自上次commit之后的变化，直接到仓库区</span></span><br><span class="line">git commit -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用一次新的commit，替代上一次提交</span></span><br><span class="line"><span class="comment"># 如果代码没有任何新变化，则用来改写上一次commit的提交信息</span></span><br><span class="line">git commit --amend -m [message]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重做上一次commit，并包括指定文件的新变化</span></span><br><span class="line">git commit --amend [file1] [file2] ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># git rm --cached &lt;file&gt;</span></span><br><span class="line"><span class="comment"># 恢复暂存区的指定文件到工作区</span></span><br><span class="line">$ git checkout [file]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复某个commit的指定文件到暂存区和工作区</span></span><br><span class="line">$ git checkout [commit] [file]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复暂存区的所有文件到工作区</span></span><br><span class="line">$ git checkout .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变</span></span><br><span class="line">$ git reset [file]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重置暂存区与工作区，与上一次commit保持一致</span></span><br><span class="line">$ git reset --hard</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变</span></span><br><span class="line">$ git reset [commit]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致</span></span><br><span class="line">$ git reset --hard [commit]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重置当前HEAD为指定commit，但保持暂存区和工作区不变</span></span><br><span class="line">$ git reset --keep [commit]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建一个commit，用来撤销指定commit</span></span><br><span class="line"><span class="comment"># 后者的所有变化都将被前者抵消，并且应用到当前分支</span></span><br><span class="line">$ git revert [commit]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暂时将未提交的变化移除，稍后再移入</span></span><br><span class="line">$ git stash</span><br><span class="line">$ git stash pop</span><br></pre></td></tr></table></figure>
+
+<h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3><ul>
+<li><p>默认在 git 的仓库中，会有个分支的原点：master</p>
+</li>
+<li><p>如果在某个分支修改了某个文件但没有<code>commit</code>，此时若切换到其他分支，则其他分支的工作区文件也会显示被修改了。只有进行<code>commit</code> 操作后所有分支的工作区才会回到之前的版本。</p>
+</li>
+<li><p>当合并发生冲突时，只需将冲突的文件进行手动修改，然后再次<code>commit</code>  就能解决。</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出所有本地分支</span></span><br><span class="line">git branch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于当前分支新建一个分支，但依然停留在当前分支</span></span><br><span class="line">git branch [branch-name]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于当前分支新建一个分支，并切换到该分支</span></span><br><span class="line">git checkout -b [branch]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到指定分支，并更新工作区</span></span><br><span class="line">git checkout [branch-name]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到上一个分支，交替和上一个分支进行切换</span></span><br><span class="line">git checkout -</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并指定分支到当前分支</span></span><br><span class="line">git merge [branch]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除分支</span></span><br><span class="line">git branch -d [branch-name]</span><br></pre></td></tr></table></figure>
+
+<h3 id="远程操作"><a href="#远程操作" class="headerlink" title="远程操作"></a>远程操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载一个远程仓库</span></span><br><span class="line">$ git <span class="built_in">clone</span> [url]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示所有远程仓库</span></span><br><span class="line">git remote -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示某个远程仓库的信息</span></span><br><span class="line">git remote show [remote]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加一个新的远程仓库，并命名</span></span><br><span class="line">git remote add [shortname] [url]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取回远程仓库的变化，并与本地分支合并</span></span><br><span class="line">git pull [remote] [branch]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 上传本地指定分支到远程仓库</span></span><br><span class="line">git push [remote] [branch]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 强行推送当前分支到远程仓库，即使有冲突</span></span><br><span class="line">git push [remote] --force</span><br></pre></td></tr></table></figure>
+
+<h3 id="Git-工作流程：分支策略"><a href="#Git-工作流程：分支策略" class="headerlink" title="Git 工作流程：分支策略"></a>Git 工作流程：分支策略</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2015/12/git-workflow.html">Git 工作流程</a></li>
+</ul>
+<h4 id="Git-Flow"><a href="#Git-Flow" class="headerlink" title="Git Flow"></a>Git Flow</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2012/07/git.html">Git分支管理策略 git flow</a></li>
+</ul>
+<p><img src="C:/Users/PC/Desktop/前端/笔记/git/images/Git-Flow工作流.png" alt="Git-Flow工作流"></p>
+<h4 id="Github-Collabrators"><a href="#Github-Collabrators" class="headerlink" title="Github Collabrators"></a>Github Collabrators</h4><p>这种方式公司团队项目使用居多</p>
+<h4 id="Github-Flow"><a href="#Github-Flow" class="headerlink" title="Github Flow"></a>Github Flow</h4><p>这种方式开源项目使用居多</p>
+<ul>
+<li>fork</li>
+<li>clone 到你的本地</li>
+<li>在clone下来的项目中拉出一个新的分支<ul>
+<li>修改的时候最好是基于 master 拉出一个修改的分支，例如这个分支是用来添加某个功能的</li>
+</ul>
+</li>
+<li>在新分支上开发或者修改完成之后，提交到本地仓库，然后 push 推到自己的账户中 fork 过来的仓库</li>
+<li>最后，在 Github 上你 fork 过来的仓库界面中找到 New Pull Request 发起提交请求</li>
+<li>对方就会在仓库的 Pull Requests 中收到你发起的提交请求<ul>
+<li>然后双方就可以使用社会化交流方式进行沟通协作</li>
+<li>例如 Code Review 代码审查</li>
+</ul>
+</li>
+<li>最后对方审查通过没有问题之后，选择 Merge Request</li>
+<li>到此，一个完整的 Github 工作流结束</li>
+<li>这种方式开源项目更多一些（大家都不认识）</li>
+</ul>
+<h4 id="Gitlab-Flow"><a href="#Gitlab-Flow" class="headerlink" title="Gitlab Flow"></a>Gitlab Flow</h4><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2015/12/git-workflow.html">gitlab flow 工作流程</a></p>
+<h3 id="在线仓库托管服务"><a href="#在线仓库托管服务" class="headerlink" title="在线仓库托管服务"></a>在线仓库托管服务</h3><blockquote>
+<p>一个不知道 github、stackoverflow 的程序员想想都是可悲的</p>
+</blockquote>
+<ul>
+<li>github</li>
+<li>码云</li>
+<li>coding</li>
+<li>gitlab   是一个开源的类似于 Github 的一个系统，开源免费部署到自己的公司内容。</li>
+</ul>
+<hr>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><blockquote>
+<p>Github 就是程序员的新浪微博<br>它可以让你使用社交化的方式进行编程协作、<br>    - 点赞<br>    - 评论<br>    - 转发<br>    - etc.<br>主要作用：可以免费在线托管你的仓库<br>可以实现多人协作<br>提供了一个可视化界面（Web Page）让你能直观清晰的了解你的项目源代码</p>
+</blockquote>
+<h3 id="基本使用-1"><a href="#基本使用-1" class="headerlink" title="基本使用"></a>基本使用</h3><ul>
+<li>注册</li>
+<li>登陆</li>
+<li>创建远程仓库</li>
+<li>通过 <code>git clone  远程仓库地址</code> 命令下载远程仓库到本地<ul>
+<li>git clone 会自动帮你把远程仓库下载到本地，不需要再去 git init 了</li>
+<li>通过 clone 下来的仓库，git 有一个远程仓库地址列表，git 默认会把你 clone 的地址起一个别名：origin</li>
+<li>然后你执行 push 的时候实际上就是将本地的版本提交到 origin 上</li>
+</ul>
+</li>
+<li>在本地进行操作，通过 <code>git commit</code> 形成历史记录</li>
+<li>通过 <code>git push</code> 将本地仓库中的历史记录提交到远程仓库</li>
+</ul>
+<h3 id="本地已有仓库，需要提交到线上"><a href="#本地已有仓库，需要提交到线上" class="headerlink" title="本地已有仓库，需要提交到线上"></a>本地已有仓库，需要提交到线上</h3><p>如果是 <code>git init</code> 出来的仓库，进行 <code>push</code> 提交的时候就不知道要往哪里 push。</p>
+<p>所以，这里通过 <code>remote</code> 相关命令进行设置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有的远程仓库信息</span></span><br><span class="line">git remote show</span><br><span class="line"><span class="comment"># 根据别名查看指定的远程仓库信息</span></span><br><span class="line">git remote show 远程仓库地址别名</span><br><span class="line"><span class="comment"># 添加远程仓库信息</span></span><br><span class="line">git remote add 别名 远程仓库地址</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的 <code>git remote add</code> 添加完远程仓库地址信息之后，还不能直接 <code>git push</code>，必须在每一次<br><code>push</code> 的时候加上 <code>git push 仓库地址别名 master</code> 就可以提交了。</p>
+<p>如果想要省略 <code>git push</code> 后面需要指定的 <code>仓库地址别名 master</code> 可以通过下面的命令修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --set-upstream heima（别名） master</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以直接使用 <code>git push</code> 进行提交而不需要指定 <code>heima master</code> 了</p>
+<h2 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h2><p>Github Pages 是Github提供了一个免费在线托管静态资源的服务</p>
+<p>使用方法如下：</p>
+<ol>
+<li>在个人的 Github 账户中创建一个仓库</li>
+<li>仓库名称必须为 <code>个人账户名称.github.io</code></li>
+<li>往该仓库根目录中提交一个 <code>index.html</code> 文件</li>
+<li>然后就可以在地址栏输入 <code>个人账户名称.github.io</code> 地址，就可以看到 <code>index.html</code> 网页内容了</li>
+</ol>
+<p>注意：上面创建的仓库名称必须是 <code>个人账户名称.github.io</code> ，否则无法访问</p>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>Hexo 是基于 Node.js 开发的一个静态博客生成器，提供本地实时预览及部署功能。</p>
+<h3 id="Hexo基本使用"><a href="#Hexo基本使用" class="headerlink" title="Hexo基本使用"></a>Hexo基本使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装全局 hexo 包文件</span></span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化一个blog（博客）</span></span><br><span class="line">hexo init blog</span><br><span class="line"></span><br><span class="line"><span class="comment">#切到blog文件夹</span></span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动本地预览服务，默认是 127.0.0.1:4000</span></span><br><span class="line">hexo server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建文章</span></span><br><span class="line">hexo new 文章标题</span><br></pre></td></tr></table></figure>
+
+<p>也可以参考 Hexo 官方文档：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">https://hexo.io/zh-cn/</a> , 里面有具体的使用方式。</p>
+<h3 id="自动发布-Hexo-搭建的静态博客"><a href="#自动发布-Hexo-搭建的静态博客" class="headerlink" title="自动发布 Hexo 搭建的静态博客"></a>自动发布 Hexo 搭建的静态博客</h3><p>第一：先修改 <code>_config.yml</code> 配置文件，下面是一个示例：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://heima04:heima123456@github.com/heima04/heima04.github.io.git</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的配置选项中，一定要注意在 repo 中按照对应的格式加入 Github 用户名和密码。</p>
+<p>第二：安装自动发布的插件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>第三：使用命令一键进行发布：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo generate --deploy</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">hexo deploy --generate</span><br></pre></td></tr></table></figure>
+
+<p>上面两条命令都可以，发布可能有延时，稍微等待即可。</p>
+<h3 id="主题修改"><a href="#主题修改" class="headerlink" title="主题修改"></a>主题修改</h3><p>step1：在github或者hexo官网上搜索想替换的主题，例如：<a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia">https://github.com/litten/hexo-theme-yilia</a></p>
+<p>step2：使用<code>git clone 主题git地址</code>  将文件克隆到博客文件夹的themes文件夹中</p>
+<ul>
+<li>使用 clone 时，可以在后面加上 depth = 1 表示只下载最新的版本，不下载历史版本，<code>git clone 主题git地址 --depth=1</code></li>
+</ul>
+<p>step3: 修改 <code>_config.yml</code>配置文件</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">主题名</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/25/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
