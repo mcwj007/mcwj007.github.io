@@ -17,8 +17,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mcwj007.github.io/2021/03/25/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/g1.png">
 <meta property="og:image" content="https://mcwj007.github.io/2021/03/25/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Git-Flow%E5%B7%A5%E4%BD%9C%E6%B5%81.png">
+<meta property="og:image" content="https://mcwj007.github.io/2021/03/25/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/c1.png">
+<meta property="og:image" content="https://mcwj007.github.io/2021/03/25/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/c2.png">
 <meta property="article:published_time" content="2021-03-25T09:06:17.000Z">
-<meta property="article:modified_time" content="2021-03-25T12:15:58.349Z">
+<meta property="article:modified_time" content="2021-03-26T08:36:39.820Z">
 <meta property="article:author" content="WANG JING">
 <meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
@@ -366,7 +368,29 @@
 <h3 id="自动发布-Hexo-搭建的静态博客"><a href="#自动发布-Hexo-搭建的静态博客" class="headerlink" title="自动发布 Hexo 搭建的静态博客"></a>自动发布 Hexo 搭建的静态博客</h3><p>第一：先修改 <code>_config.yml</code> 配置文件，下面是一个示例：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://heima04:heima123456@github.com/heima04/heima04.github.io.git</span></span><br></pre></td></tr></table></figure>
 
-<p>上面的配置选项中，一定要注意在 repo 中按照对应的格式加入 Github 用户名和密码。</p>
+<p>​    上面的配置选项中，一定要注意在 repo 中按照对应的格式加入 Github 用户名和密码。或者直接填仓库地址，每次重新部署时手动输入账号密码。</p>
+<ul>
+<li><p>若上面的 repo 不想暴露git的用户名和密码可以采用ssh验证的方式，步骤如下：</p>
+<p>1 、在创建的 blog 文件夹中右键点击<code>Git Bash Here</code> ,输入<code>cd ~/.ssh</code>  ,然后再输入<code>ls</code>,如下图所示说明已经存在 id_rsa.pub 或 id_dsa.pub 文件，则可以跳过步骤2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PC@WJPC MINGW64 ~/Desktop/blog (master)</span><br><span class="line">$ <span class="built_in">cd</span> ~/.ssh</span><br><span class="line"></span><br><span class="line">PC@WJPC MINGW64 ~/.ssh</span><br><span class="line">$ ls</span><br><span class="line">id_rsa  id_rsa.pub  known_hosts</span><br></pre></td></tr></table></figure>
+
+<p>2、 创建一个 SSH key，输入<code>ssh-keygen -t rsa -C &quot;你的邮箱&quot;</code>,然后连续回车</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PC@WJPC MINGW64 ~/.ssh</span><br><span class="line">$ ssh-keygen -t rsa -C <span class="string">&quot;244227697@qq.com&quot;</span></span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/c/Users/PC/.ssh/id_rsa):</span><br><span class="line">/c/Users/PC/.ssh/id_rsa already exists.</span><br><span class="line">Overwrite (y/n)?</span><br></pre></td></tr></table></figure>
+
+<p>3、 输入<code>eval &quot;$(ssh-agent -s)&quot;</code>，添加密钥到ssh-agent,然后输入<code>ssh-add ~/.ssh/id_rsa</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PC@WJPC MINGW64 ~/.ssh</span><br><span class="line">$ <span class="built_in">eval</span> <span class="string">&quot;<span class="subst">$(ssh-agent -s)</span>&quot;</span></span><br><span class="line">Agent pid 1881</span><br><span class="line"></span><br><span class="line">PC@WJPC MINGW64 ~/.ssh</span><br><span class="line">$ ssh-add ~/.ssh/id_rsa</span><br><span class="line">Identity added: /c/Users/PC/.ssh/id_rsa (/c/Users/PC/.ssh/id_rsa)</span><br></pre></td></tr></table></figure>
+
+<p>4、 打开github个人中心的<code>Settings--&gt;SSH and GPG keys</code>,创建SSH key，title 随便取名，key 的内容为～/.ssh/id_rsa.pub文件的内容，复制进去即可。</p>
+<img src="/2021/03/25/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/c1.png" class title="create ssh">
+
+<img src="/2021/03/25/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/c2.png" class title="finished">
+
+<p>5、通过 <code>ssh -T git@github.com</code> 命令验证是否添加成功，成功后返回信息如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PC@WJPC MINGW64 ~/.ssh</span><br><span class="line">$ ssh -T git@github.com</span><br><span class="line">Hi mcwj007! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure>
+
+<p>6、修改 <code>_config.yml</code> 配置文件，其中repo为git仓库的 ssh 地址</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:mcwj007/mcwj007.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></li>
+</ul>
 <p>第二：安装自动发布的插件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 
